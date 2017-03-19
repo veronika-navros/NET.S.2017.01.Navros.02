@@ -8,6 +8,34 @@ namespace Task1
     /// </summary>
     public class MergeSort
     {
+        #region Public Members
+
+        /// <summary>
+        /// Sorts the specified one-dimensional iteger array
+        /// </summary>
+        /// <param name="array">One-dimensional integer array for sorting</param>
+        /// <returns> The sorted one-dimensional integer array </returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static int[] Sort(int[] array)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (array.Length == 1)
+            {
+                return array;
+            }
+
+            int middlePoint = array.Length / 2;
+            return Merge(Sort(array.Take(middlePoint).ToArray()), Sort(array.Skip(middlePoint).ToArray()));
+        }
+
+        #endregion
+
+        #region Private members
+
         /// <summary>
         /// Merges two sorted one-dimensional integer arrays into one 
         /// </summary>
@@ -50,22 +78,6 @@ namespace Task1
             return mergedArray;
         }
 
-        /// <summary>
-        /// Sorts the specified one-dimensional iteger array
-        /// </summary>
-        /// <param name="array">One-dimensional integer array for sorting</param>
-        /// <returns> The sorted one-dimensional integer array </returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        public static int[] Sort(int[] array)
-        {
-            if (array == null)
-                throw new ArgumentNullException();
-
-            if (array.Length == 1)
-                return array;
-
-            int middlePoint = array.Length / 2;
-            return Merge(Sort(array.Take(middlePoint).ToArray()), Sort(array.Skip(middlePoint).ToArray()));
-        }
+        #endregion
     }
 }
